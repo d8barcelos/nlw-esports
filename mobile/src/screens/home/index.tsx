@@ -29,9 +29,7 @@ export function Home() {
         horizontal
         contentContainerStyle={styles.contentList}
       />
-
-       
-
+      
     </View>
   );
 }
