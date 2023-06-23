@@ -3,6 +3,7 @@ import logoImg from "./assets/logo.svg";
 import { GameBanner } from "./components/GameBanner";
 import { CreateAdBanner } from "./components/CreateAdBanner";
 import { useEffect, useState } from "react";
+import * as Dialog from "@radix-ui/react-dialog";
 
 interface Game {
   id: string;
@@ -27,7 +28,6 @@ function App() {
       });
   }, []);
 
-
   return (
     <div className="max-w-[1344px] mx-auto flex items-center flex-col my-20">
       <img src={logoImg} />
@@ -38,7 +38,6 @@ function App() {
         </span>{" "}
         está aqui.
       </h1>
-
 
       <div className="grid grid-cols-6 gap-6 mt-16">
         {games.map((game) => {
@@ -53,7 +52,19 @@ function App() {
         })}
       </div>
 
-      <CreateAdBanner />
+      <Dialog.Root>
+        <CreateAdBanner />
+        <Dialog.Portal>
+          <Dialog.Overlay className="bg-black/60 inset-0 fixed"/>
+          <Dialog.Content>
+            <Dialog.Title>Publique um anúncio</Dialog.Title>
+
+            <Dialog.Content>
+              serjhagfejklhrgj
+            </Dialog.Content>
+          </Dialog.Content>
+        </Dialog.Portal>
+      </Dialog.Root>
     </div>
   );
 }
