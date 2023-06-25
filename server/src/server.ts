@@ -13,6 +13,8 @@ const prisma = new PrismaClient({
   log: ['query']
 })
 
+// CRUD
+
 app.get('/games', async (request, response) => {
   const games = await prisma.game.findMany({
     include: {
