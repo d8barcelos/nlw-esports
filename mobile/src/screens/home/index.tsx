@@ -3,11 +3,13 @@ import { View, Image, FlatList } from 'react-native';
 import logoImg from '../../assets/logo-nlw-esports.png'
 import { styles } from './styles';
 import { Heading } from '../../components/heading';
-import { GameCard } from '../../components/GameCard';
+import { GameCard, GameCardProps } from '../../components/GameCard';
 import { GAMES } from '../../utils/games';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export function Home() {
+
+  const [games, setGames] = useState<GameCardProps[]>([]);
 
   useEffect(()=> {
     fetch('http://192.168.1.105:3333/games')
