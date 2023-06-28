@@ -12,15 +12,19 @@ interface Game {
 }
 
 export function CreateAdModal() {
-  const [games, setGames] = useState<Game[]>([]);
+  
   const [weekDays, setWeekDays] = useState<string[]>([]);
   const [useVoiceChannel, setUseVoiceChannel] = useState(false);
+  const [availableGames, setAvailableGames] = useState<Game[]>([]);
 
-  useEffect(() => {
-    axios('http://localhost:3333/games').then(response => {
-      setGames(response.data);
-    });
-  }, []);
+useEffect(() => {
+  axios('http://localhost:3333/games').then(response => {
+    setAvailableGames(response.data);
+    console.log(response.data)
+  });
+}, []);
+
+  
 
   async function handleCreateAd(event: FormEvent) {
     event.preventDefault()
@@ -50,6 +54,7 @@ export function CreateAdModal() {
     }
   }
 
+
   return (
     <Dialog.Portal>
       <Dialog.Overlay className="bg-black/60 inset-0 fixed" />
@@ -70,10 +75,9 @@ export function CreateAdModal() {
               defaultValue=""
             >
               <option disabled>Selecione o game que deseja jogar</option>
-              {games.map((game) => {
-                const key = `${game.title}-${game.id}`
+              {availableGames.map((game) => {
                 return (
-                  <option key={key} value={game.id}>
+                  <option key={game.id}  value={game.id}>
                     {game.title}
                   </option>
                 );

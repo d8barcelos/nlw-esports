@@ -25,6 +25,7 @@ function App() {
       setGames(response.data);
     });
   }, []);
+  console.log(games)
   
 
   return (
@@ -40,10 +41,9 @@ function App() {
 
       <div className="grid grid-cols-6 gap-6 mt-16">
         {games.map((game) => {
-          const gameKey = `${game.title}-${game.id}`;
           return (
             <GameBanner
-              key={gameKey}
+              key={game.id}
               adsCount={game._count?.ads || 0}
               title={game.title}
               bannerUrl={game.bannerUrl}
